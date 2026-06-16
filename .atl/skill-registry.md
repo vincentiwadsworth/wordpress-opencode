@@ -85,6 +85,14 @@ Last updated: 2026-06-16
 | `word-document-processor` | Comprehensive word document processing with full format support. Handles creation, editing, formatting preservation, tracked changes, and metadata management. | user | `C:\Users\nicol\.agents\skills\word-document-processor\SKILL.md` |
 | `work-unit-commits` | Plan commits as reviewable work units. Trigger: implementation, commit splitting, chained PRs, or keeping tests and docs with code. | user | `C:\Users\nicol\.config\opencode\skills\work-unit-commits\SKILL.md` |
 
+## Project skills
+
+| Skill | Trigger / description | Scope | Path |
+| --- | --- | --- | --- |
+| `wp-ddev-workflow` | Trigger: DDEV, ddev start, WordPress local, WP-CLI, instalar plugin, activar plugin. Manage WordPress local environments with DDEV and WP-CLI. | project | `skills/wp-ddev-workflow/SKILL.md` |
+| `wp-elementor-page` | Trigger: crear página, landing page, Elementor layout, maquetar, página con Elementor, design tokens. Build WordPress pages using Elementor via Respira CLI and elementor-mcp-agent. | project | `skills/wp-elementor-page/SKILL.md` |
+| `wp-deploy` | Trigger: deploy, push a producción, staging, CI/CD, GitHub Actions, Trellis. Deploy WordPress sites from local to production using CI/CD pipelines. | project | `skills/wp-deploy/SKILL.md` |
+
 ## Loading protocol
 
 1. Match task context and target files against the `Trigger / description` column.

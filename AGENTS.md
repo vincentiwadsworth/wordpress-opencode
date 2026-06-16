@@ -52,6 +52,16 @@ wp-cli.yml      # path: web/wp
 - **CI lints only.** `.github/workflows/ci.yml` runs `composer lint` (Pint) on push/PR. No test suite yet.
 - **Commits are conventional.** `feat(scope):`, `fix(scope):`, `docs(scope):`, `chore(scope):`.
 
+## Project skills
+
+Load these before working on specific domains:
+
+| Skill | Path | When |
+|-------|------|------|
+| `wp-ddev-workflow` | `skills/wp-ddev-workflow/SKILL.md` | DDEV, WP-CLI, plugin management |
+| `wp-elementor-page` | `skills/wp-elementor-page/SKILL.md` | Elementor page building, Respira CLI |
+| `wp-deploy` | `skills/wp-deploy/SKILL.md` | Deploy, CI/CD, Trellis |
+
 ## Testing
 
 No test runner configured. `strict_tdd: false`. PHPUnit + Pest available as dev deps (`require-dev`) but no test files exist yet.
