@@ -1,0 +1,52 @@
+# openspec/config.yaml
+schema: spec-driven
+
+context: |
+  Project: wordpress-opencode — WordPress + Elementor Pro stack managed via CLI/LLM
+  Stack: WordPress (Bedrock) + Elementor Pro + Composer
+  Local env: DDEV (Docker-based, reproducible)
+  Server CLI: WP-CLI for WordPress admin, Respira CLI for Elementor-native content
+  AI integration: elementor-mcp-agent for LLM-driven Elementor manipulation
+  Deploy: Trellis (Ansible) for provisioning + zero-downtime deploys
+  CI/CD: GitHub Actions
+  Languages: PHP 8.3+, JavaScript/Node.js 20+
+  Architecture: Composer-managed WordPress (Bedrock pattern), plugins as dependencies
+  Testing: Not yet configured — PHPUnit + Playwright planned
+
+testing:
+  strict_tdd: false
+  runner: none
+  reason: "No test runner detected. Repo is in pre-implementation phase. PHPUnit and Playwright will be added when implementation begins."
+  layers:
+    unit: { available: false, tool: "—" }
+    integration: { available: false, tool: "—" }
+    e2e: { available: false, tool: "—" }
+  coverage: { available: false, command: "—" }
+  quality:
+    linter: { available: false, command: "—" }
+    type_checker: { available: false, command: "—" }
+    formatter: { available: false, command: "—" }
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - State which stack layer each change affects
+  specs:
+    - Use Given/When/Then for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Include sequence diagrams for complex flows
+    - Document architecture decisions with rationale
+  tasks:
+    - Group by layer (DDEV/WordPress/Elementor/Deploy)
+    - Keep tasks completable in one session
+  apply:
+    - Follow existing code patterns
+    tdd: false
+    test_command: ""
+  verify:
+    test_command: ""
+    build_command: ""
+    coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas
