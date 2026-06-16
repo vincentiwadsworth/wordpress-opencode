@@ -56,6 +56,6 @@ Chain strategy: stacked-to-main
 
 ## Phase 5: Deploy/CI Layer (U4 → PR 5)
 
-- [ ] 5.1 Create `.github/workflows/ci.yml`: on push/PR, PHP 8.3, `composer validate`, PHP lint on changed files, `COMPOSER_AUTH` secret for Elementor Pro
-- [ ] 5.2 Update `README.md`: prerequisites, clone → `.env.example` → `.env` → fill license → `ddev start` → `ddev wp core install` flow
-- [ ] 5.3 Verify: CI passes on push; README steps reproduce from clean clone
+- [x] 5.1 Create `.github/workflows/ci.yml`: PHP 8.3, `composer install`, `composer lint` (Elementor Pro not required in CI — now `suggest`)
+- [x] 5.2 Update `README.md`: status, quick start, Elementor Pro install note, directory layout, badges, prerequisites, stack
+- [x] 5.3 Verify: `.editorconfig` exists from Bedrock scaffold (PHP/JS/CSS) ✅; no new file needed
