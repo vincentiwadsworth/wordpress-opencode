@@ -7,4 +7,11 @@
  */
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 require_once dirname(__DIR__) . '/config/application.php';
+
+// DDEV-managed settings — only applied if constants not already set by .env
+$ddev_settings = __DIR__ . '/wp-config-ddev.php';
+if (is_readable($ddev_settings) && !defined('DB_USER')) {
+  require_once $ddev_settings;
+}
+
 require_once ABSPATH . 'wp-settings.php';

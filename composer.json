@@ -15,10 +15,9 @@
       "only": ["elementor/elementor-pro"]
     }
   ],
-  "require": {
+    "require": {
     "php": ">=8.3",
     "composer/installers": "^2.0",
-    "elementor/elementor-pro": "^3.25",
     "oscarotero/env": "^2.0",
     "roots/bedrock-autoloader": "^1.0",
     "roots/bedrock-disallow-indexing": "^2.0",
@@ -26,6 +25,9 @@
     "roots/wp-config": "^1.0",
     "vlucas/phpdotenv": "^5.0",
     "wpackagist-plugin/elementor": "^3.25"
+  },
+  "suggest": {
+    "elementor/elementor-pro": "Install Elementor Pro with your license: run 'composer require elementor/elementor-pro' after adding ELEMENTOR_PRO_LICENSE to .env and restarting DDEV"
   },
   "require-dev": {
     "laravel/pint": "^1.0",
