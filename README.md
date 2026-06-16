@@ -215,27 +215,22 @@ git push → se construye → se deploya al servidor → cero downtime
 
 ---
 
-## Prerrequisitos
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-- [DDEV](https://ddev.com/get-started/) (≥ 1.22)
-- PHP 8.3+, Composer 2, Node.js 20+ (para tooling host-side)
-
----
-
 ## Stack
 
-- **WordPress 7.0** gestionado con Composer (Bedrock)
-- **Elementor 3.35.9** (free) como builder principal
-- **Elementor Pro** disponible como dependencia opcional (requiere licencia)
-- **DDEV** para entorno local reproducible
-- **WP-CLI 2.12.0** para administración server-side
-- **Laravel Pint** para linting PHP
-- **Pest** para testing PHP (futuro)
-- **Respira CLI** para manipulación nativa de layouts Elementor (host-side, futuro)
-- **elementor-mcp-agent** para integración LLM-Elementor (host-side, futuro)
-- **Trellis** para deploy y provisioning (futuro)
-- **GitHub Actions** para CI/CD
+| Capa | Herramienta | Versión |
+|------|------------|---------|
+| Entorno | [DDEV](https://ddev.com/) + Docker | 1.25.2 · PHP 8.3 · MariaDB 10.11 |
+| CMS | [WordPress](https://wordpress.org/) (Bedrock) | 7.0 |
+| Builder | [Elementor](https://elementor.com/) | 3.35.9 (free) |
+| Builder Pro | Elementor Pro | Opcional (licencia requerida) |
+| CLI server | [WP-CLI](https://wp-cli.org/) | 2.12.0 |
+| CLI builder | [Respira CLI](https://respira.press/cli) | 0.1.4 |
+| AI agent | [elementor-mcp-agent](https://github.com/Mogacode-ma/elementor-mcp-agent) | 1.3.0 |
+| Lint | [Laravel Pint](https://laravel.com/pint) | 1.x |
+| CI/CD | [GitHub Actions](https://github.com/features/actions) | — |
+| Deploy | [Trellis](https://roots.io/trellis/) | Próximamente |
+
+**Prerrequisitos:** [Docker Desktop](https://www.docker.com/products/docker-desktop/) + [DDEV ≥ 1.22](https://ddev.com/get-started/) + [Node.js ≥ 18](https://nodejs.org/).
 
 ---
 
