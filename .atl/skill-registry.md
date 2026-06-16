@@ -6,6 +6,7 @@ Last updated: 2026-06-16
 
 ## Sources scanned
 
+- skills
 - C:\Users\nicol\.agents\skills
 - C:\Users\nicol\.config\opencode\skills
 - C:\Users\nicol\.claude\skills
@@ -84,14 +85,9 @@ Last updated: 2026-06-16
 | `web-design-guidelines` | Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check accessibility", "audit design", "review UX", or "check my site against best practices". | user | `C:\Users\nicol\.agents\skills\web-design-guidelines\SKILL.md` |
 | `word-document-processor` | Comprehensive word document processing with full format support. Handles creation, editing, formatting preservation, tracked changes, and metadata management. | user | `C:\Users\nicol\.agents\skills\word-document-processor\SKILL.md` |
 | `work-unit-commits` | Plan commits as reviewable work units. Trigger: implementation, commit splitting, chained PRs, or keeping tests and docs with code. | user | `C:\Users\nicol\.config\opencode\skills\work-unit-commits\SKILL.md` |
-
-## Project skills
-
-| Skill | Trigger / description | Scope | Path |
-| --- | --- | --- | --- |
-| `wp-ddev-workflow` | Trigger: DDEV, ddev start, WordPress local, WP-CLI, instalar plugin, activar plugin. Manage WordPress local environments with DDEV and WP-CLI. | project | `skills/wp-ddev-workflow/SKILL.md` |
-| `wp-elementor-page` | Trigger: crear página, landing page, Elementor layout, maquetar, página con Elementor, design tokens. Build WordPress pages using Elementor via Respira CLI and elementor-mcp-agent. | project | `skills/wp-elementor-page/SKILL.md` |
-| `wp-deploy` | Trigger: deploy, push a producción, staging, CI/CD, GitHub Actions, Trellis. Deploy WordPress sites from local to production using CI/CD pipelines. | project | `skills/wp-deploy/SKILL.md` |
+| `wp-ddev-workflow` | Trigger: DDEV, ddev start, WordPress local, WP-CLI, instalar plugin, activar plugin. Manage WordPress local environments with DDEV and WP-CLI. | project | `C:\Users\nicol\Documents\GitHub\wordpress-opencode\skills\wp-ddev-workflow\SKILL.md` |
+| `wp-deploy` | Trigger: deploy, push a producción, staging, CI/CD, GitHub Actions, Trellis. Deploy WordPress sites from local to staging or production using CI/CD pipelines. | project | `C:\Users\nicol\Documents\GitHub\wordpress-opencode\skills\wp-deploy\SKILL.md` |
+| `wp-elementor-page` | Trigger: crear página, landing page, Elementor layout, maquetar, página con Elementor, design tokens. Build WordPress pages using Elementor via Respira CLI and elementor-mcp-agent. | project | `C:\Users\nicol\Documents\GitHub\wordpress-opencode\skills\wp-elementor-page\SKILL.md` |
 
 ## Loading protocol
 
