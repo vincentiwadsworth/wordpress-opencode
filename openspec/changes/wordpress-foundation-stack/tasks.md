@@ -36,10 +36,10 @@ Chain strategy: stacked-to-main
 
 ## Phase 2: WordPress/Bedrock Layer (U2a → PR 2)
 
-- [ ] 2.1 Scaffold Bedrock: `composer create-project roots/bedrock .` (generates composer.json, config/application.php, config/environments/*.php, web/wp-config.php, wp-cli.yml, .gitignore)
-- [ ] 2.2 Modify `composer.json`: add repositories (wpackagist + composer.elementor.com with `only`), require elementor/elementor-pro ^3.27, wpackagist-plugin/elementor ^3.27
-- [ ] 2.3 Verify layout exists: `web/wp/`, `web/app/plugins/`, `web/app/mu-plugins/`, `config/application.php`
-- [ ] 2.4 Verify: `composer validate` passes; `wp-cli.yml` contains `path: web/wp`
+- [x] 2.1 Scaffold Bedrock: `composer create-project roots/bedrock .` (generates composer.json, config/application.php, config/environments/*.php, web/wp-config.php, wp-cli.yml, .gitignore)
+- [x] 2.2 Modify `composer.json`: add repositories (wpackagist + composer.elementor.com with `only`), require elementor/elementor-pro ^3.25, wpackagist-plugin/elementor ^3.25
+- [x] 2.3 Verify layout exists: `web/wp/`, `web/app/plugins/`, `web/app/mu-plugins/`, `config/application.php`
+- [x] 2.4 Verify: `composer validate` passes; `wp-cli.yml` contains `path: web/wp`
 
 ## Phase 3: Composer Lock (U2b → PR 3, size:exception)
 
