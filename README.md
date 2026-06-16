@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 <!-- TODO: add CI status badge once repo is on GitHub -->
-[![CI](https://github.com/nicolasventures/wordpress-opencode/actions/workflows/ci.yml/badge.svg)](https://github.com/nicolasventures/wordpress-opencode/actions/workflows/ci.yml)
+[![CI](https://github.com/vincentiwadsworth/wordpress-opencode/actions/workflows/ci.yml/badge.svg)](https://github.com/vincentiwadsworth/wordpress-opencode/actions/workflows/ci.yml)
 [![PHP](https://img.shields.io/badge/PHP-8.3-777bb4?logo=php)](https://www.php.net/)
 [![DDEV](https://img.shields.io/badge/DDEV-local-02a8e0?logo=docker)](https://ddev.com/)
 [![WordPress](https://img.shields.io/badge/WordPress-7.0-3858e9?logo=wordpress)](https://wordpress.org/)
@@ -31,7 +31,7 @@ Si ya tenés [Docker Desktop](https://www.docker.com/products/docker-desktop/) y
 
 ```bash
 # 1. Cloná el repo
-git clone https://github.com/nicolasventures/wordpress-opencode.git
+git clone https://github.com/vincentiwadsworth/wordpress-opencode.git
 cd wordpress-opencode
 
 # 2. Creá tu .env a partir del template
