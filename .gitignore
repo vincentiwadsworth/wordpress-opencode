@@ -25,6 +25,12 @@ web/.htaccess
 /vendor
 auth.json
 
+# Node
+node_modules/
+
+# DDEV secrets
+.ddev/.env
+
 # PHPUnit/Pest
 phpunit.xml
 .phpunit.result.cache

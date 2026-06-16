@@ -49,10 +49,10 @@ Chain strategy: stacked-to-main
 
 ## Phase 4: Environment Layer (U3 → PR 4)
 
-- [ ] 4.1 Create `.env.example`: DB_NAME/USER/PASSWORD/HOST=db, WP_HOME/WP_SITEURL, WP_ENV=development, WP salts placeholders, ELEMENTOR_PRO_LICENSE=your-license-here
-- [ ] 4.2 Modify `.gitignore`: add `auth.json`, ensure `.env` ignored, `.env.example` NOT ignored, `/web/wp/` ignored, `/vendor/` ignored
-- [ ] 4.3 Create `bin/setup-composer-auth.sh`: source `.env`, set `composer config --auth http-basic.composer.elementor.com token <key>`, exit 1 with `ELEMENTOR_PRO_LICENSE` message if unset
-- [ ] 4.4 Verify: unset license → script errors with license hint; `git add -A` does NOT stage `.env`
+- [x] 4.1 Create `.env.example`: DB_NAME/USER/PASSWORD/HOST=db, WP_HOME/WP_SITEURL, WP_ENV=development, WP salts placeholders, ELEMENTOR_PRO_LICENSE=your-license-here
+- [x] 4.2 Modify `.gitignore`: add `auth.json`, ensure `.env` ignored, `.env.example` NOT ignored, `/web/wp/` ignored, `/vendor/` ignored
+- [x] 4.3 Create `bin/setup-composer-auth.sh`: source `.env`, set `composer config --auth http-basic.composer.elementor.com token <key>`, exit 1 with `ELEMENTOR_PRO_LICENSE` message if unset
+- [x] 4.4 Verify: unset license → script errors with license hint; `git add -A` does NOT stage `.env`
 
 ## Phase 5: Deploy/CI Layer (U4 → PR 5)
 
