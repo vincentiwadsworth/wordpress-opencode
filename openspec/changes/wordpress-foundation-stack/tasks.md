@@ -28,11 +28,11 @@ Chain strategy: stacked-to-main
 
 ## Phase 1: DDEV Layer (U1 → PR 1)
 
-- [ ] 1.1 Create `.ddev/config.yaml`: name=wordpress-opencode, php_version=8.3, database=mariadb:10.11, webserver_type=nginx-fpm, docroot=web, nodejs_version=20
-- [ ] 1.2 Create `.ddev/config.composer.yaml`: composer_version=2 + any composer-specific DDEV overrides
-- [ ] 1.3 Add `hooks.post-start` to config.yaml: exec `bin/setup-composer-auth.sh` then `composer install` (guard: skip if script absent)
-- [ ] 1.4 Create `.ddev/nginx/bedrock.conf` if DDEV default nginx fails to route `web/` (Bedrock try_files rewrites)
-- [ ] 1.5 Verify: `ddev config` shows PHP 8.3 + MariaDB 10.11; `git status` tracks `.ddev/config.yaml`
+- [x] 1.1 Create `.ddev/config.yaml`: name=wordpress-opencode, php_version=8.3, database=mariadb:10.11, webserver_type=nginx-fpm, docroot=web, nodejs_version=20
+- [x] 1.2 Create `.ddev/config.composer.yaml`: composer_version=2 + any composer-specific DDEV overrides
+- [x] 1.3 Add `hooks.post-start` to config.yaml: exec `bin/setup-composer-auth.sh` then `composer install` (guard: skip if script absent)
+- [x] 1.4 Create `.ddev/nginx/bedrock.conf` if DDEV default nginx fails to route `web/` (Bedrock try_files rewrites)
+- [x] 1.5 Verify: `ddev config` shows PHP 8.3 + MariaDB 10.11; `git status` tracks `.ddev/config.yaml`
 
 ## Phase 2: WordPress/Bedrock Layer (U2a → PR 2)
 
