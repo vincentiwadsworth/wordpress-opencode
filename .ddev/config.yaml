@@ -1,0 +1,15 @@
+name: wordpress-opencode
+type: wordpress
+docroot: web
+php_version: "8.3"
+webserver_type: nginx-fpm
+database:
+  type: mariadb
+  version: "10.11"
+nodejs_version: "20"
+hooks:
+  post-start:
+    - exec: |
+        if [ -f bin/setup-composer-auth.sh ]; then
+          bash bin/setup-composer-auth.sh
+        fi
