@@ -10,10 +10,7 @@ Stack open source para crear sitios WordPress con Elementor Pro desde la termina
 
 ---
 
-> **📸 TODO — Agregar screenshot del sitio funcionando**
->
-> Capturar la home de `https://wordpress-opencode.ddev.site` después de `ddev start`.
-> Guardar en `docs/screenshots/site-preview.png` (1440×900, PNG).
+![Sitio WordPress + Elementor funcionando en local con DDEV](docs/screenshots/site-preview.png)
 
 ## Arranque rápido
 
