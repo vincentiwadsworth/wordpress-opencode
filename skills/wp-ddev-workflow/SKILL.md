@@ -17,17 +17,21 @@ Use this skill for any DDEV or WP-CLI operation in this project. All WordPress a
 - `ddev start` runs Composer install and post-start hooks; `ddev restart` re-runs hooks.
 - `.env` is gitignored. Read `.env.example` for required vars, never modify `.env` without user approval.
 - `web/wp/` is Composer-managed — never edit WordPress core files.
-- Plugin installation uses Composer (`ddev composer require wpackagist-plugin/<slug>`), not `wp plugin install`.
+- Plugin installation prefers Composer (`ddev composer require wpackagist-plugin/<slug>`), but falls back to `ddev wp plugin install <slug>` for plugins not on wpackagist.
+- **`WP_HOME` in `.env` must match the DDEV URL** (`http://wordpress-opencode.ddev.site`). If it's `example.com`, the REST API breaks.
+- **Permalinks must be set after any new WordPress install or URL change**: `ddev wp rewrite structure '/%postname%/' && ddev wp rewrite flush --hard`.
 
 ## Decision Gates
 
 | Trigger | Action |
 |---------|--------|
 | User says "levantar WordPress", "arrancar entorno" | `ddev start` + verify with `ddev describe` |
-| User wants a new free plugin | `ddev composer require wpackagist-plugin/<slug>` then `ddev wp plugin activate <slug>` |
+| User wants a new free plugin | `ddev composer require wpackagist-plugin/<slug>` then `ddev wp plugin activate <slug>`. If not on wpackagist: `ddev wp plugin install <slug> --activate` |
 | User wants Elementor Pro | Check `ELEMENTOR_PRO_LICENSE` in `.env`; if absent, ask for license key first |
 | WP-CLI command fails with "not a WordPress installation" | Verify `ddev start` ran successfully; check `web/wp/` exists |
 | Database issues | `ddev wp db check` or `ddev wp db repair` |
+| REST API returns HTML instead of JSON | Check `WP_HOME` in `.env` matches `http://wordpress-opencode.ddev.site`. Also verify permalinks: `ddev wp rewrite structure '/%postname%/' && ddev wp rewrite flush --hard` |
+| First time after WordPress install | Must set permalinks: `ddev wp rewrite structure '/%postname%/' --hard` and flush rewrites. Without this, `/wp-json/` doesn't resolve. |
 
 ## Execution Steps
 

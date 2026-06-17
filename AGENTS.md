@@ -11,8 +11,8 @@ WordPress + Elementor Pro stack for AI-assisted site creation and management.
 | Builder | Elementor (free) | 3.35.9 via Composer |
 | Builder Pro | Elementor Pro | `suggest` in composer.json — needs license |
 | CLI | WP-CLI | 2.12.0 (`ddev wp`) |
-| CLI builder | Respira CLI | 0.1.4 (`respira`, host-side) |
-| AI agent | elementor-mcp-agent | 1.3.0 (host-side) |
+| CLI builder | Respira CLI | 0.1.4 (host-side, NOT connected) |
+| AI agent | elementor-mcp-agent | 1.3.0 (host-side, outputSchema bug) |
 | Lint | Laravel Pint | `ddev composer lint` |
 
 ## Commands
@@ -59,7 +59,7 @@ Load these before working on specific domains:
 | Skill | Path | When |
 |-------|------|------|
 | `wp-ddev-workflow` | `skills/wp-ddev-workflow/SKILL.md` | DDEV, WP-CLI, plugin management |
-| `wp-elementor-page` | `skills/wp-elementor-page/SKILL.md` | Elementor page building, Respira CLI |
+| `wp-elementor-page` | `skills/wp-elementor-page/SKILL.md` | Elementor page building (WP-CLI injection) |
 | `wp-deploy` | `skills/wp-deploy/SKILL.md` | Deploy, CI/CD, Trellis |
 
 ## Testing
@@ -73,3 +73,7 @@ No test runner configured. `strict_tdd: false`. PHPUnit + Pest available as dev 
 - `composer.lock` is committed — reproducible builds everywhere.
 - Respira CLI and elementor-mcp-agent are host-side (npm global), not inside DDEV.
 - Bedrock's DB defaults (`db`/`db`/`db`/`db`) match DDEV's out-of-the-box credentials.
+- **WP_HOME must match DDEV URL.** `.env` must have `WP_HOME='http://wordpress-opencode.ddev.site'` — if it's `example.com`, the REST API returns HTML instead of JSON, breaking all API-based tools.
+- **Permalinks need rewrite flush.** After first setup or URL changes: `ddev wp rewrite structure '/%postname%/' && ddev wp rewrite flush --hard`. Without this, `/wp-json/` doesn't work.
+- **elementor-mcp-agent has outputSchema bug with OpenCode.** Tools fail with "has an output schema but did not return structured content". WP-CLI `_elementor_data` injection is the primary page-building method (see `wp-elementor-page` skill).
+- **Respira CLI is NOT connected.** Site was never linked. Plugin `inhale-mcp-abilities` ≠ Respira for WordPress plugin needed for CLI auth. Don't route page creation through Respira.

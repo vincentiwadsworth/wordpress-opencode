@@ -38,3 +38,9 @@ phpunit.xml
 
 # WP-CLI
 wp-cli.local.yml
+# Local AI runtime state
+.atl/
+
+# OpenCode local config (contains MCP secrets)
+.opencode/elementor-sites.json
+opencode.json
