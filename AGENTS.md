@@ -142,6 +142,40 @@ wp-cli.yml      # path: web/wp
 | `wp-multi-site` | `skills/wp-multi-site/SKILL.md` | Site switching between client sites |
 | `wp-deploy` | `skills/wp-deploy/SKILL.md` | Deploy, CI/CD, Trellis |
 
+### Ecosystem skills (instalados globalmente)
+
+| Skill | Installs | Cuando |
+|-------|----------|--------|
+| `seo-audit` (coreyhaines31) | 139.7K | Auditoría SEO completa del sitio activo |
+| `wordpress-content` (jezweb) | 1.1K | Gestión de posts, media, categorías, menús |
+| `seo` (addyosmani/web-quality) | 27K | SEO técnico: structured data, Core Web Vitals |
+| `accessibility` | — | Auditoría WCAG 2.2 |
+| `impeccable` | — | Diseño frontend, pulido visual |
+
+## Cómo pedirle cosas a la IA
+
+No necesitás saber PHP ni WordPress internals. Con HTML/CSS básico alcanza. Sé específico con el diseño:
+
+| Estilo | Ejemplo |
+|--------|---------|
+| ❌ Muy vago | "Creame una página" |
+| ✅ Específico | "Creame una landing con hero oscuro, fondo #0F172A, fuente blanca grande, tres columnas de servicios con bordes redondeados, y un botón verde al final" |
+| ❌ Muy vago | "Poneme esto lindo" |
+| ✅ Acción concreta | "Cambiá el color de fondo a #F8FAFC y la fuente a algo más moderno" |
+| ❌ Muy vago | "Arreglá el sitio" |
+| ✅ Con contexto | "Hacé una auditoría SEO del sitio activo" |
+
+### Gestión de sitios
+
+```
+"switch a cliente-uno"              → cambia de sitio
+"mostrame los plugins activos"       → lista plugins
+"instalá yoast y activalo"           → instala plugin
+"creame una página de contacto"      → usa template del skill correspondiente
+"actualizá todos los plugins"        → WP-CLI batch update
+"hacé un SEO audit del sitio"        → skill seo-audit
+```
+
 ## Testing
 
 No test runner configured. `strict_tdd: false`. PHPUnit + Pest available as dev deps (`require-dev`) but no test files exist yet.
