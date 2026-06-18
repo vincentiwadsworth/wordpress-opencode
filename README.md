@@ -1,111 +1,69 @@
 # WordPress OpenCode — Multi-Site Agency Workspace
 
-Dejá de perder horas en tareas repetitivas de gestión y desarrollo de sitios WordPress. Un solo repo para manejar toda tu cartera de clientes, con Elementor **o** Avada.
+Workspace para gestionar múltiples sitios WordPress desde un solo repositorio, con soporte para Elementor y Avada (Fusion Builder).
 
-```bash
-# En vez de:
-#   loguearte en 10 wp-admin, crear páginas una por una,
-#   instalar plugins a mano, switchear entre builders...
-#
-# Hacés:
-"switch a cliente-uno, creame una landing con hero + servicios + CTA"
-# La IA lo hace en segundos. Para Elementor o Avada.
-```
+Estado: **desarrollo activo** — la herramienta funciona pero estamos armándola sobre la marcha.
 
 [![CI](https://github.com/vincentiwadsworth/wordpress-opencode/actions/workflows/ci.yml/badge.svg)](https://github.com/vincentiwadsworth/wordpress-opencode/actions/workflows/ci.yml)
 
 ---
 
-## Para qué sirve
+## Qué es
 
-Gestionás sitios WordPress para clientes. Algunos usan **Elementor**, otros **Avada**. Este repo te permite:
+Un repo pensado para diseñadores/devs de WordPress que manejan varios sitios de clientes. En vez de tener un entorno por cliente, este workspace centraliza:
 
-- **Unificar** todos tus clientes en un solo lugar
-- **Switchear** entre sitios al toque
-- **Crear páginas** en segundos para cualquier builder
-- **Automatizar** tareas repetitivas (plugins, temas, migraciones)
-- **Trabajar con IA** — le decís qué hacer y lo hace
+- Conexiones a distintos sitios (URL, credenciales, builder que usa cada uno)
+- Skills para que la IA sepa cómo laburar con cada builder
+- Un sitio local con DDEV para desarrollo/pruebas
 
-## Lo que NO hace (para que estemos claros)
+### Builders soportados
 
-- ❌ **No convierte páginas de Elementor a Avada automáticamente** — los modelos de datos son incompatibles (`_elementor_data` vs shortcodes en `post_content`). Si migrás un sitio, hay que recrear las páginas.
-- ❌ **No reemplaza el wp-admin** — para diseño visual fino, entrás al editor de cada builder.
-- ❌ **No deploya a producción** (todavía) — está planeado.
-- ❌ **No corré tests automáticos** (todavía).
+- **Elementor** — via `elementor-mcp-agent` (MCP server con soporte multi-site nativo)
+- **Avada** (Fusion Builder) — via WP-CLI + shortcodes en `post_content` (no hay MCP agent, funciona igual)
 
----
+## Qué NO es
 
-## Setup rápido
+- ❌ No es un conversor automático Elementor → Avada (modelos de datos incompatibles)
+- ❌ No reemplaza el wp-admin para diseño visual fino
+- ❌ No deploya a producción (todavía)
+
+## Setup
 
 ```bash
 git clone <repo> && cd wordpress-opencode
 cp .env.example .env
-ddev start                          # levanta entorno local
+ddev start                          # levanta PHP 8.3, MariaDB, nginx
 ddev wp core install --url='...' --title='...' --admin_user=admin --admin_password=admin --admin_email=admin@example.com
-ddev launch                         # WordPress funcionando 🚀
+ddev launch
 ```
 
-**Requisitos:** [Docker Desktop](https://www.docker.com/products/docker-desktop/) + [DDEV ≥ 1.22](https://ddev.com/get-started/).
-
----
+**Requiere:** [Docker Desktop](https://www.docker.com/products/docker-desktop/) + [DDEV ≥ 1.22](https://ddev.com/get-started/).
 
 ## Agregar un cliente
 
 ```bash
 cp sites/_template.yaml sites/mi-cliente.yaml
-# Completá URL, credenciales, builder (elementor|avada), SSH
+# Completar: url, username, application_password, builder (elementor|avada), ssh (si aplica)
 ```
 
-Después, desde la IA: `"switch a mi-cliente"` y ya estás trabajando en ese sitio.
-
-### Si el cliente usa Elementor
-
-Agregalo también a `.opencode/elementor-sites.json` (gitignored). La IA usa `elementor-mcp-agent` con soporte multi-site nativo.
-
-### Si el cliente usa Avada
-
-La IA crea páginas inyectando shortcodes de Fusion Builder en `post_content` via WP-CLI. No hay MCP agent para Avada — funciona igual de rápido.
-
----
+**Elementor**: agregar también a `.opencode/elementor-sites.json` (gitignored).
+**Avada**: el skill `wp-avada-page` tiene los shortcodes y templates listos.
 
 ## Commands reference
 
-| Lo que querés hacer | Comando |
-|---------------------|---------|
-| Switch a un cliente | `"switch a cliente-id"` |
+| Qué | Cómo |
+|-----|------|
+| Switch a cliente | `"switch a cliente-id"` |
 | Listar clientes | `"list sites"` |
-| Crear página Elementor | Decile a la IA el contenido |
-| Crear página Avada | Decile a la IA el contenido |
-| Instalar plugin | `ddev composer require wpackagist-plugin/<slug>` |
+| Crear página | Decile a la IA qué páginas necesitás |
+| Instalar plugin | `ddev composer require wpackagist-plugin/<slug>` + `ddev wp plugin activate <slug>` |
 | WP-CLI remoto | `ssh user@host "wp --path=... <command>"` |
 
-Ver la documentación completa de skills y flujos en [AGENTS.md](AGENTS.md).
+Ver [AGENTS.md](AGENTS.md) para flujos de trabajo y documentación de skills.
 
 ## Stack
 
-| Capa | Herramienta |
-|------|-------------|
-| Entorno local | DDEV 1.25.2 + PHP 8.3 + MariaDB 10.11 |
-| CMS | WordPress 7.0 (Bedrock) |
-| Builder (Elementor) | Elementor 3.35.9 (free, Composer) |
-| Builder (Avada) | Fusion Builder (tema premium ThemeForest) |
-| CLI | WP-CLI 2.12.0 |
-| AI agent (Elementor) | elementor-mcp-agent 1.3.0 |
-| Lint | Laravel Pint |
-
-## Project layout
-
-```
-sites/               # Config de clientes (gitignored, _template.yaml trackeado)
-skills/              # Skills LLM por builder/flujo
-  wp-avada-page/     #   Avada: shortcodes + WP-CLI
-  wp-elementor-page/ #   Elementor: WP-CLI + MCP
-  wp-multi-site/     #   Site switching
-  wp-ddev-workflow/  #   DDEV + WP-CLI + SSH
-  wp-deploy/         #   Deploy (WIP)
-web/                 # WordPress + plugins + temas
-.ddev/               # Entorno Docker
-```
+DDEV 1.25.2 / PHP 8.3 / MariaDB 10.11 / WordPress 7.0 (Bedrock) / Elementor 3.35.9 / Avada (Fusion Builder, premium) / WP-CLI 2.12.0 / elementor-mcp-agent 1.3.0 / Laravel Pint
 
 ## Licencia
 
