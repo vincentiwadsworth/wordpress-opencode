@@ -61,6 +61,13 @@ Estas son las operaciones más frecuentes. Ejecutalas rápido sin preguntar cada
 ### 🔄 Switch de builder en un sitio (Elementor ↔ Avada)
 
 ```yaml
+# 0. Setup local Avada (primera vez):
+#    cp sites/_template.yaml sites/local-avada.yaml
+#    Completar builder: avada, url: http://wordpress-opencode.ddev.site
+#    Luego instalar el tema:
+ddev wp theme install <path-to-avada.zip> --activate
+ddev wp plugin install avada-builder --activate
+
 # 1. Desactivar Elementor
 ddev wp plugin deactivate elementor    # local
 ssh user@host "wp plugin deactivate elementor"  # remoto
