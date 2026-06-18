@@ -4,7 +4,7 @@ description: "Trigger: switch site, list sites, active site, cambiar de sitio, c
 license: MIT
 metadata:
   author: "gentle-orchestrator"
-  version: "1.0"
+  version: "2.0"
 ---
 
 ## Activation Contract
@@ -48,6 +48,18 @@ Once a site is active, the AI routes all page-building work based on the `builde
 
 - **`builder: elementor`** — Use `elementor-mcp-agent` tools and `wp-elementor-page` skill
 - **`builder: avada`** — Use WP-CLI + shortcodes and `wp-avada-page` skill
+
+## CLI Script
+
+For persistent switching across sessions, use `bin/switch-site.sh`:
+
+```bash
+./bin/switch-site.sh list              # List all sites
+./bin/switch-site.sh status            # Show active site
+./bin/switch-site.sh client-acme       # Switch to client
+```
+
+This writes a `.current-site` marker file that persists between AI sessions and sets `ACTIVE_SITE` env var.
 
 ## Output Contract
 

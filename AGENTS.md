@@ -51,21 +51,51 @@ ssh:
 
 ### Builder Routing
 
-- **Elementor sites**: Use `elementor-mcp-agent` tools (multi-site capable) + `wp-elementor-page` skill
-- **Avada sites**: Use WP-CLI + shortcodes via `wp-avada-page` skill (no MCP agent available)
+- **Elementor sites**: Use `elementor-mcp-agent` tools + `wp-elementor-page` skill
+- **Avada sites**: Use WP-CLI + shortcodes via `wp-avada-page` skill
 
-## Commands
+## Common Workflows
+
+Estas son las operaciones más frecuentes. Ejecutalas rápido sin preguntar cada detalle.
+
+### 🔄 Switch de builder en un sitio (Elementor ↔ Avada)
+
+```yaml
+# 1. Desactivar Elementor
+ddev wp plugin deactivate elementor    # local
+ssh user@host "wp plugin deactivate elementor"  # remoto
+
+# 2. Instalar Avada (si no está)
+# NOTA: Avada es premium, requiere zip comprado en ThemeForest
+ddev wp theme install <path-to-avada.zip> --activate
+ddev wp plugin install avada-builder --activate  # o el slug real
+
+# 3. Las páginas viejas (Elementor) quedan con _elementor_data pero post_content vacío
+# Las páginas NUEVAS se crean con Avada shortcodes en post_content
+# NO hay conversión automática Elementor → Avada (modelos de datos incompatibles)
+```
+
+### 📄 Crear página rápida (cualquier builder)
+
+**Elementor** (via elementor-mcp-agent o WP-CLI):
+```
+Crear page → inject _elementor_data JSON → flush CSS → publish
+```
+
+**Avada** (via WP-CLI):
+```
+Crear page con post_content='[fusion_builder_container][fusion_builder_row]...[/fusion_builder_container]'
+```
+
+### 🔌 Gestionar plugins
 
 ```bash
-ddev start               # start environment
-ddev stop                # stop
-ddev restart             # restart (re-runs post-start hooks)
-ddev wp <command>        # WP-CLI inside container (local DDEV)
-ddev composer <command>  # Composer inside container
-ddev launch              # open site in browser
+# Local
+ddev composer require wpackagist-plugin/<slug>
+ddev wp plugin activate <slug>
 
-# Remote WP-CLI (from sites/<id>.yaml SSH config)
-ssh user@host "wp --path=/var/www/html <command>"
+# Remoto
+ssh user@host "wp plugin install <slug> --activate"
 ```
 
 ## Project layout
@@ -96,8 +126,6 @@ wp-cli.yml      # path: web/wp
 - **Commits are conventional.** `feat(scope):`, `fix(scope):`, `docs(scope):`, `chore(scope):`.
 
 ## Project skills
-
-Load these before working on specific domains:
 
 | Skill | Path | When |
 |-------|------|------|

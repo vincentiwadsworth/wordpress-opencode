@@ -49,3 +49,6 @@ opencode.json
 sites/*.yaml
 !sites/_template.yaml
 !sites/.gitkeep
+
+# Local AI state
+.current-site
