@@ -48,7 +48,43 @@ After any state change, report:
 - Verify command output showing success
 - URL if relevant (`ddev launch` or `http://wordpress-opencode.ddev.site`)
 
+## Remote WP-CLI via SSH
+
+For **remote sites** (not local DDEV), WP-CLI runs over SSH instead of `ddev wp`:
+
+```bash
+# Basic remote WP-CLI
+ssh user@host "wp --path=/var/www/html plugin list"
+
+# Create a page on a remote site
+ssh user@host "wp --path=/var/www/html post create \
+  --post_type=page --post_title='Title' --post_status=publish"
+
+# Update post meta on remote
+ssh user@host "wp --path=/var/www/html post meta update <ID> _elementor_data '\''$(cat /tmp/data.json)'\''"
+```
+
+**SSH credentials** are stored in the site config (`sites/<id>.yaml`) under the `ssh` key:
+- `host`, `port`, `user`, `path`, `wp` (WP-CLI binary)
+
+### Decision Gates (Remote)
+
+| Trigger | Action |
+|---------|--------|
+| Need to run WP-CLI on a remote site | Use `ssh user@host "wp --path=... <command>"` — read SSH credentials from `sites/<id>.yaml` |
+| SSH key not configured | Ask user to configure SSH key-based auth. Password auth is not supported from CLI. |
+
+## Multi-Site Awareness
+
+This skill covers both:
+- **Local DDEV**: Use `ddev wp` commands (primary workflow for the local dev site)
+- **Remote sites**: Use SSH WP-CLI commands (for Elementor and Avada client sites)
+
+The active site is determined via the `wp-multi-site` skill conventions. If `ACTIVE_SITE` is set to a remote site, use SSH. If unset or `local-ddev`, use `ddev wp`.
+
 ## References
 
 - `AGENTS.md` — project stack, commands, conventions, gotchas.
 - `.env.example` — required environment variables.
+- `wp-multi-site` skill — site switching conventions.
+- `sites/_template.yaml` — site config schema with SSH fields.

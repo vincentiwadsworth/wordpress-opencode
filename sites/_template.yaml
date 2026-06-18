@@ -1,0 +1,20 @@
+# Site configuration template
+# Copy to sites/<client-id>.yaml and fill in credentials.
+# This file is gitignored via sites/*.yaml.
+
+id: client-id                # Unique site identifier (kebab-case)
+name: Client Name            # Human-readable name
+url: "https://example.com"   # WordPress site URL
+username: "admin"            # WordPress username
+application_password: "..."  # Application Password (Users > Profile > App Passwords)
+builder: elementor           # Page builder: elementor | avada
+theme: ""                    # Active theme (informational only)
+
+# SSH access — REQUIRED for Avada sites, optional for Elementor sites
+# Used for WP-CLI commands over SSH (e.g., wp post create)
+ssh:
+  host: ""                   # SSH host
+  port: 22                   # SSH port (default: 22)
+  user: ""                   # SSH username
+  path: "/var/www/html"      # WordPress installation path on server
+  wp: "wp"                   # WP-CLI binary (default: "wp")

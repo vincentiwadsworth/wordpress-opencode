@@ -2,11 +2,13 @@
 schema: spec-driven
 
 context: |
-  Project: wordpress-opencode — WordPress + Elementor Pro stack managed via CLI/LLM
-  Stack: WordPress (Bedrock) + Elementor Pro + Composer
+  Project: wordpress-opencode — multi-site agency workspace for WordPress client sites
+  Stack: WordPress (Bedrock) + Elementor (Composer) + Avada (Fusion Builder, theme)
+  Builders: Elementor (via elementor-mcp-agent MCP), Avada (via WP-CLI shortcodes)
   Local env: DDEV (Docker-based, reproducible)
-  Server CLI: WP-CLI for WordPress admin, Respira CLI for Elementor-native content
-  AI integration: elementor-mcp-agent for LLM-driven Elementor manipulation
+  Server CLI: WP-CLI for WordPress admin (ddev wp local, SSH for remote)
+  AI integration: elementor-mcp-agent for Elementor sites; wp-avada-page skill for Avada
+  Multi-site: sites/*.yaml per-client configs with builder routing
   Deploy: Trellis (Ansible) for provisioning + zero-downtime deploys
   CI/CD: GitHub Actions
   Languages: PHP 8.3+, JavaScript/Node.js 20+

@@ -111,7 +111,24 @@ Return:
 - Any workarounds applied (e.g., button bg style injection).
 - CSS flush confirmation.
 
+## Multi-Site Awareness
+
+This skill is part of a **multi-site agency workspace**. When working on a remote Elementor site (not local DDEV):
+
+1. The site config is in `sites/<id>.yaml` — includes URL, credentials, builder type
+2. Elementor sites use `elementor-mcp-agent` which natively supports multiple sites via `ELEMENTOR_MCP_SITES` array in `.opencode/elementor-sites.json`
+3. `elementor-mcp-agent` tools accept a `site_id` parameter — use the site ID from the config
+4. For the local DDEV site, the existing `ddev wp` commands continue to work
+
+### Site Switching
+
+- Use the `wp-multi-site` skill to switch between sites
+- "switch to <site-id>" → AI reads site config and uses the correct credentials
+- Active site context is maintained in session memory
+
 ## References
 
 - `AGENTS.md` — project stack, commands, conventions, gotchas.
+- `sites/_template.yaml` — site config schema.
+- `wp-multi-site` skill — site switching conventions.
 - Elementor 3.35.9 container documentation: https://developers.elementor.com/docs/elements/

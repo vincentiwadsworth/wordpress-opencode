@@ -1,3 +1,7 @@
 path: web/wp
 server:
   docroot: web
+
+# Remote WP-CLI: use --ssh flag or SSH command wrapper
+# ssh user@host "wp --path=/var/www/html <command>"
+# See skills/wp-ddev-workflow/SKILL.md for remote patterns.

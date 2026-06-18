@@ -1,0 +1,14 @@
+[
+  {
+    "id": "local-ddev",
+    "url": "http://wordpress-opencode.ddev.site",
+    "username": "admin",
+    "application_password": "your-app-password-here"
+  },
+  {
+    "id": "client-acme",
+    "url": "https://acme.com",
+    "username": "admin",
+    "application_password": "your-app-password-here"
+  }
+]

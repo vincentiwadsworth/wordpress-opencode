@@ -44,3 +44,8 @@ wp-cli.local.yml
 # OpenCode local config (contains MCP secrets)
 .opencode/elementor-sites.json
 opencode.json
+
+# Site configs (per-client credentials)
+sites/*.yaml
+!sites/_template.yaml
+!sites/.gitkeep
