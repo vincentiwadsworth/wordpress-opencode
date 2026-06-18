@@ -103,6 +103,156 @@ Widget settings:
 
 **Button background workaround**: Group_Control_Background doesn't generate CSS from programmatic data. Use an HTML widget with `<style>` targeting the button's `_element_id`.
 
+## Page Templates
+
+Use these templates for common page types. Each template is `_elementor_data` JSON ready to inject. Randomize element IDs on each use (6-char hex).
+
+### Template: Hero + Features + CTA (Landing)
+
+```jsonc
+[
+  // HERO SECTION — dark background, full-width
+  {
+    "id": "a1b2c3",
+    "elType": "container",
+    "settings": {
+      "flex_direction": "column", "align_items": "center", "justify_content": "center",
+      "background_background": "classic", "background_color": "#0F172A",
+      "padding": {"unit": "px", "top": "120", "right": "20", "bottom": "120", "left": "20", "isLinked": false},
+      "content_width": "boxed", "boxed_width": {"unit": "px", "size": 900}
+    },
+    "elements": [
+      {"id":"a1b001","elType":"widget","widgetType":"heading","settings":{"title":"{TITLE}","header_size":"h1","align":"center","title_color":"#FFFFFF","typography_typography":"custom","typography_font_size":{"unit":"px","size":48},"typography_font_weight":"800"}},
+      {"id":"a1b002","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>{SUBTITLE}</p>","align":"center","text_color":"#94A3B8","typography_typography":"custom","typography_font_size":{"unit":"px","size":20}}},
+      {"id":"a1b003","elType":"widget","widgetType":"button","settings":{"text":"{CTA_TEXT}","link":{"url":"{CTA_URL}"},"size":"lg","align":"center","button_text_color":"#FFFFFF","button_background_background":"classic","button_background_color":"#3B82F6","border_radius":{"unit":"px","top":"8","right":"8","bottom":"8","left":"8","isLinked":true},"text_padding":{"unit":"px","top":"15","right":"30","bottom":"15","left":"30","isLinked":false}}}
+    ]
+  },
+  // FEATURES SECTION — 3 columns, white
+  {
+    "id": "d4e5f6",
+    "elType": "container",
+    "settings": {
+      "flex_direction": "column", "align_items": "center",
+      "padding": {"unit": "px", "top": "80", "right": "20", "bottom": "80", "left": "20", "isLinked": false},
+      "content_width": "boxed", "boxed_width": {"unit": "px", "size": 1140}
+    },
+    "elements": [
+      {"id":"d4e001","elType":"widget","widgetType":"heading","settings":{"title":"{FEATURES_TITLE}","header_size":"h2","align":"center","title_color":"#1E293B","typography_typography":"custom","typography_font_size":{"unit":"px","size":36},"typography_font_weight":"700"}},
+      {"id":"d4e002","elType":"container","settings":{"flex_direction":"row","flex_gap":{"unit":"px","size":30}},
+        "elements":[
+          {"id":"fe1","elType":"container","settings":{"flex_direction":"column","background_background":"classic","background_color":"#FFFFFF","border_border":"solid","border_width":{"unit":"px","top":"1","right":"1","bottom":"1","left":"1","isLinked":true},"border_color":"#E2E8F0","border_radius":{"unit":"px","top":"12","right":"12","bottom":"12","left":"12","isLinked":true},"padding":{"unit":"px","top":"30","right":"30","bottom":"30","left":"30","isLinked":true},"flex_grow":"1","flex_basis":"33%"},
+            "elements":[
+              {"id":"fe1a","elType":"widget","widgetType":"heading","settings":{"title":"{FEATURE_1}","header_size":"h3","title_color":"#1E293B","typography_typography":"custom","typography_font_size":{"unit":"px","size":24},"typography_font_weight":"700"}},
+              {"id":"fe1b","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>{FEATURE_1_DESC}</p>","text_color":"#64748B"}}
+            ]},
+          {"id":"fe2","elType":"container","settings":{"flex_direction":"column","background_background":"classic","background_color":"#FFFFFF","border_border":"solid","border_width":{"unit":"px","top":"1","right":"1","bottom":"1","left":"1","isLinked":true},"border_color":"#E2E8F0","border_radius":{"unit":"px","top":"12","right":"12","bottom":"12","left":"12","isLinked":true},"padding":{"unit":"px","top":"30","right":"30","bottom":"30","left":"30","isLinked":true},"flex_grow":"1","flex_basis":"33%"},
+            "elements":[
+              {"id":"fe2a","elType":"widget","widgetType":"heading","settings":{"title":"{FEATURE_2}","header_size":"h3","title_color":"#1E293B","typography_typography":"custom","typography_font_size":{"unit":"px","size":24},"typography_font_weight":"700"}},
+              {"id":"fe2b","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>{FEATURE_2_DESC}</p>","text_color":"#64748B"}}
+            ]},
+          {"id":"fe3","elType":"container","settings":{"flex_direction":"column","background_background":"classic","background_color":"#FFFFFF","border_border":"solid","border_width":{"unit":"px","top":"1","right":"1","bottom":"1","left":"1","isLinked":true},"border_color":"#E2E8F0","border_radius":{"unit":"px","top":"12","right":"12","bottom":"12","left":"12","isLinked":true},"padding":{"unit":"px","top":"30","right":"30","bottom":"30","left":"30","isLinked":true},"flex_grow":"1","flex_basis":"33%"},
+            "elements":[
+              {"id":"fe3a","elType":"widget","widgetType":"heading","settings":{"title":"{FEATURE_3}","header_size":"h3","title_color":"#1E293B","typography_typography":"custom","typography_font_size":{"unit":"px","size":24},"typography_font_weight":"700"}},
+              {"id":"fe3b","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>{FEATURE_3_DESC}</p>","text_color":"#64748B"}}
+            ]}
+        ]}
+    ]
+  },
+  // CTA SECTION — light background
+  {
+    "id": "g7h8i9",
+    "elType": "container",
+    "settings": {
+      "flex_direction": "column", "align_items": "center",
+      "background_background": "classic", "background_color": "#F8FAFC",
+      "padding": {"unit": "px", "top": "80", "right": "20", "bottom": "80", "left": "20", "isLinked": false},
+      "content_width": "boxed", "boxed_width": {"unit": "px", "size": 800}
+    },
+    "elements": [
+      {"id":"g7h001","elType":"widget","widgetType":"heading","settings":{"title":"{CTA_SECTION_TITLE}","header_size":"h2","align":"center","title_color":"#1E293B","typography_typography":"custom","typography_font_size":{"unit":"px","size":32},"typography_font_weight":"700"}},
+      {"id":"g7h002","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>{CTA_SECTION_DESC}</p>","align":"center","text_color":"#64748B"}},
+      {"id":"g7h003","elType":"widget","widgetType":"button","settings":{"text":"{CTA_BUTTON}","link":{"url":"{CTA_URL}"},"size":"lg","align":"center","button_text_color":"#FFFFFF","button_background_background":"classic","button_background_color":"#10B981","border_radius":{"unit":"px","top":"8","right":"8","bottom":"8","left":"8","isLinked":true},"text_padding":{"unit":"px","top":"15","right":"30","bottom":"15","left":"30","isLinked":false}}}
+    ]
+  }
+]
+```
+
+### Template: About (Text + Image + Stats)
+
+```jsonc
+[
+  // TEXT + IMAGE SECTION
+  {
+    "id":"j1k2l3","elType":"container","settings":{"flex_direction":"row","flex_gap":{"unit":"px","size":60},"padding":{"unit":"px","top":"80","right":"20","bottom":"80","left":"20","isLinked":false},"content_width":"boxed","boxed_width":{"unit":"px","size":1140}},
+    "elements":[
+      {"id":"j1k001","elType":"container","settings":{"flex_direction":"column","flex_basis":"50%"},"elements":[
+        {"id":"j1k01a","elType":"widget","widgetType":"heading","settings":{"title":"{SECTION_TITLE}","header_size":"h2","title_color":"#1E293B","typography_typography":"custom","typography_font_size":{"unit":"px","size":36},"typography_font_weight":"700"}},
+        {"id":"j1k01b","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>{TEXT_1}</p><p>{TEXT_2}</p>","text_color":"#64748B","typography_typography":"custom","typography_font_size":{"unit":"px","size":16}}}
+      ]},
+      {"id":"j1k002","elType":"container","settings":{"flex_direction":"column","flex_basis":"50%"},"elements":[
+        {"id":"j1k02a","elType":"widget","widgetType":"image","settings":{"image":{"id":"{IMAGE_ID}"},"image_size":"full","align":"center","width":{"unit":"%","size":100}}}
+      ]}
+    ]
+  },
+  // STATS SECTION — 4 counters
+  {
+    "id":"m4n5o6","elType":"container","settings":{"flex_direction":"row","flex_gap":{"unit":"px","size":20},"background_background":"classic","background_color":"#F8FAFC","padding":{"unit":"px","top":"60","right":"20","bottom":"60","left":"20","isLinked":false},"content_width":"boxed","boxed_width":{"unit":"px","size":1140}},
+    "elements":[
+      {"id":"m4n001","elType":"container","settings":{"flex_direction":"column","align_items":"center","flex_basis":"25%"},"elements":[{"id":"m4n01a","elType":"widget","widgetType":"heading","settings":{"title":"{STAT_1}","header_size":"h2","align":"center","title_color":"#3B82F6","typography_typography":"custom","typography_font_size":{"unit":"px","size":42},"typography_font_weight":"800"}},{"id":"m4n01b","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>{STAT_1_LABEL}</p>","align":"center","text_color":"#64748B"}}]},
+      {"id":"m4n002","elType":"container","settings":{"flex_direction":"column","align_items":"center","flex_basis":"25%"},"elements":[{"id":"m4n02a","elType":"widget","widgetType":"heading","settings":{"title":"{STAT_2}","header_size":"h2","align":"center","title_color":"#10B981","typography_typography":"custom","typography_font_size":{"unit":"px","size":42},"typography_font_weight":"800"}},{"id":"m4n02b","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>{STAT_2_LABEL}</p>","align":"center","text_color":"#64748B"}}]},
+      {"id":"m4n003","elType":"container","settings":{"flex_direction":"column","align_items":"center","flex_basis":"25%"},"elements":[{"id":"m4n03a","elType":"widget","widgetType":"heading","settings":{"title":"{STAT_3}","header_size":"h2","align":"center","title_color":"#F59E0B","typography_typography":"custom","typography_font_size":{"unit":"px","size":42},"typography_font_weight":"800"}},{"id":"m4n03b","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>{STAT_3_LABEL}</p>","align":"center","text_color":"#64748B"}}]},
+      {"id":"m4n004","elType":"container","settings":{"flex_direction":"column","align_items":"center","flex_basis":"25%"},"elements":[{"id":"m4n04a","elType":"widget","widgetType":"heading","settings":{"title":"{STAT_4}","header_size":"h2","align":"center","title_color":"#EF4444","typography_typography":"custom","typography_font_size":{"unit":"px","size":42},"typography_font_weight":"800"}},{"id":"m4n04b","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p>{STAT_4_LABEL}</p>","align":"center","text_color":"#64748B"}}]}
+    ]
+  }
+]
+```
+
+### Template: Contact (Info + Map)
+
+```jsonc
+[
+  {
+    "id":"p7q8r9","elType":"container","settings":{"flex_direction":"column","align_items":"center","padding":{"unit":"px","top":"60","right":"20","bottom":"40","left":"20","isLinked":false},"content_width":"boxed","boxed_width":{"unit":"px","size":900}},
+    "elements":[
+      {"id":"p7q001","elType":"widget","widgetType":"heading","settings":{"title":"Contacto","header_size":"h2","align":"center","title_color":"#1E293B","typography_typography":"custom","typography_font_size":{"unit":"px","size":36},"typography_font_weight":"700"}},
+      {"id":"p7q002","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p style=\"text-align:center\">{CONTACT_INTRO}</p>","align":"center","text_color":"#64748B"}}
+    ]
+  },
+  {
+    "id":"s1t2u3","elType":"container","settings":{"flex_direction":"row","flex_gap":{"unit":"px","size":60},"padding":{"unit":"px","top":"40","right":"20","bottom":"80","left":"20","isLinked":false},"content_width":"boxed","boxed_width":{"unit":"px","size":1140}},
+    "elements":[
+      {"id":"s1t001","elType":"container","settings":{"flex_direction":"column","flex_basis":"40%"},"elements":[
+        {"id":"s1t01a","elType":"widget","widgetType":"heading","settings":{"title":"Información de Contacto","header_size":"h3","title_color":"#1E293B","typography_typography":"custom","typography_font_size":{"unit":"px","size":24},"typography_font_weight":"700"}},
+        {"id":"s1t01b","elType":"widget","widgetType":"text-editor","settings":{"editor":"<p><strong>Teléfono:</strong> {PHONE}</p><p><strong>Email:</strong> {EMAIL}</p><p><strong>Dirección:</strong> {ADDRESS}</p>","text_color":"#64748B"}}
+      ]},
+      {"id":"s1t002","elType":"container","settings":{"flex_direction":"column","flex_basis":"60%"},"elements":[
+        {"id":"s1t02a","elType":"widget","widgetType":"html","settings":{"html":"<iframe src=\"https://maps.google.com/maps?q={ENCODED_ADDRESS}&z=14&output=embed\" width=\"100%\" height=\"350\" style=\"border:0;border-radius:8px\" allowfullscreen=\"\" loading=\"lazy\"></iframe>"}}
+      ]}
+    ]
+  }
+]
+```
+
+## Workflow: Crear página completa en un paso
+
+Cuando el usuario pide "creame una landing para Elementor":
+
+1. Elegí el template que corresponda (Landing, About, Contact)
+2. Reemplazá los placeholders `{TITLE}`, `{CTA_TEXT}`, etc con contenido real
+3. Reemplazá los IDs de elementos por valores únicos (6-char hex aleatorio)
+4. Ejecutá el flujo completo:
+   ```bash
+   # Crear page → set meta → inject JSON → flush CSS → publish
+   ID=$(ddev wp post create --post_type=page --post_title='...' --post_status=draft --porcelain)
+   ddev wp post meta update $ID _elementor_edit_mode builder
+   ddev wp post meta update $ID _elementor_template_type wp-page
+   echo '[...JSON...]' > /tmp/elementor-page.json
+   ddev wp post meta update $ID _elementor_data "$(cat /tmp/elementor-page.json)"
+   ddev wp elementor flush-css
+   ddev wp post update $ID --post_status=publish
+   ```
+5. Verificá: `ddev wp post list --post_type=page --post_title='...'`
+
 ## Output Contract
 
 Return:
