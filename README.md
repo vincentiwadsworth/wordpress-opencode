@@ -1,6 +1,6 @@
 # WordPress OpenCode — Multi-Site Agency Workspace
 
-Workspace para gestionar múltiples sitios WordPress desde un solo repositorio, con soporte para Elementor y Avada (Fusion Builder).
+Workspace para gestionar múltiples sitios WordPress desde un solo repositorio usando [opencode](https://opencode.ai), un asistente de coding CLI que trabaja directamente sobre tu código. Con **opencode zen** (incluido, sin API key ni suscripción) tenés acceso a varios LLMs gratuitos — Claude, GPT, Gemini y más — aptos para editar páginas en Elementor/Avada, generar CSS, debuggear plugins, y cualquier tarea de desarrollo web.
 
 Estado: **desarrollo activo** — la herramienta funciona pero estamos armándola sobre la marcha.
 
@@ -8,9 +8,82 @@ Estado: **desarrollo activo** — la herramienta funciona pero estamos armándol
 
 ---
 
+## Quick Start
+
+### Prerrequisitos
+
+Necesitás instalar estas herramientas (si no las tenés):
+
+- **[opencode CLI](https://opencode.ai)** — el asistente que recibe tus instrucciones y ejecuta los comandos sobre tu código
+- **[Git](https://git-scm.com/downloads)** — para clonar el repositorio
+- **[Docker Desktop](https://www.docker.com/products/docker-desktop/)** — para correr los contenedores del entorno local
+- **[DDEV](https://ddev.com/get-started/)** — orquesta PHP, MariaDB y nginx adentro de Docker
+
+No necesitás API keys ni suscripciones. opencode zen te da LLMs gratuitos.
+
+### 1. Instalá opencode y activá los LLMs
+
+```bash
+npm install -g @opencode/cli
+opencode zen
+```
+
+Si no tenés npm, bajá el instalador desde [opencode.ai](https://opencode.ai).
+
+### 2. Cloná el repositorio
+
+```bash
+git clone https://github.com/vincentiwadsworth/wordpress-opencode.git
+cd wordpress-opencode
+```
+
+### 3. Configurá el entorno
+
+```bash
+cp .env.example .env
+```
+
+### 4. Inicializá el entorno local (DDEV)
+
+```bash
+ddev start
+```
+
+La primera vez descarga las imágenes Docker — puede tardar unos minutos.
+
+### 5. Instalá WordPress
+
+```bash
+ddev wp core install \
+  --url='http://wordpress-opencode.ddev.site' \
+  --title='Mi sitio' \
+  --admin_user=admin \
+  --admin_password=admin \
+  --admin_email=admin@example.com
+
+ddev wp rewrite structure '/%postname%/' && ddev wp rewrite flush --hard
+```
+
+### 6. Abrí el sitio
+
+```bash
+ddev launch
+```
+
+Probá en la terminal con:
+
+```
+"mostrame los plugins activos"
+"creame una página de prueba con fondo oscuro y texto blanco"
+```
+
+---
+
 ## Qué es
 
-Un repo pensado para diseñadores/devs de WordPress que manejan varios sitios de clientes. En vez de tener un entorno por cliente, este workspace centraliza:
+**opencode** es un CLI que lee tu código, ejecuta herramientas (WP-CLI, git, Docker, etc.) y entiende instrucciones en lenguaje natural. **opencode zen** provee los LLMs gratis — no necesitás API keys de OpenAI/Anthropic ni pagar suscripciones, y los modelos son aptos para editar páginas, diseñar CSS, debuggear, auditar SEO, escribir contenido, etc.
+
+Este repo configura opencode para trabajar con WordPress multisitio. En vez de tener un entorno por cliente, centraliza:
 
 - Conexiones a distintos sitios (URL, credenciales, builder que usa cada uno)
 - Skills para que la IA sepa cómo laburar con cada builder
@@ -26,18 +99,6 @@ Un repo pensado para diseñadores/devs de WordPress que manejan varios sitios de
 - ❌ No es un conversor automático Elementor → Avada (modelos de datos incompatibles)
 - ❌ No reemplaza el wp-admin para diseño visual fino
 - ❌ No deploya a producción (todavía)
-
-## Setup
-
-```bash
-git clone <repo> && cd wordpress-opencode
-cp .env.example .env
-ddev start                          # levanta PHP 8.3, MariaDB, nginx
-ddev wp core install --url='...' --title='...' --admin_user=admin --admin_password=admin --admin_email=admin@example.com
-ddev launch
-```
-
-**Requiere:** [Docker Desktop](https://www.docker.com/products/docker-desktop/) + [DDEV ≥ 1.22](https://ddev.com/get-started/).
 
 ## Agregar un cliente
 
